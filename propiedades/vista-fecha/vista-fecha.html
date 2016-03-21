@@ -1,0 +1,59 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="vista-fecha">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      div{
+        background-color: beige;
+        padding: 5px;
+        width: 100px;
+        text-align: center;
+      }
+      span{
+        display: block;
+        padding: 2px;
+      }
+      .mes{
+        font-size: 1em;
+        background-color: brown;
+        color: white;
+      }
+      .dia{
+        font-size: 2.2em;
+      }
+      .mes{
+        font-size: 0.9em;
+      }
+    </style>
+    <div>
+      <span class="mes">{{mes}}</span>
+      <span class="dia">{{dia}}</span>
+      <span class="ano">{{ano}}</span>
+    </div>
+  </template>
+  <script>
+  (function() {
+    Polymer({
+      is: 'vista-fecha',
+
+      properties: {
+        mes: {
+          type: String,
+          value: 'enero'
+        },
+        dia: {
+          type: Number,
+          value: 1
+        },
+        ano: {
+          type: Number,
+          value: 2016
+        }
+      }
+    });
+  })();
+  </script>
+</dom-module>

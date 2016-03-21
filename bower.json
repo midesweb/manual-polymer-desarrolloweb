@@ -1,0 +1,21 @@
+{
+  "name": "manual-polymer",
+  "authors": [
+    "Miguel Angel Alvarez <malvarez@desarrolloweb.com>"
+  ],
+  "description": "Ejemplos del manual de Polymer de DesarrolloWeb.com",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "http://www.desarrolloweb.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "^1.2.4"
+  }
+}

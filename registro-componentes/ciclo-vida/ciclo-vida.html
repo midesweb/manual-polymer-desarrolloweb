@@ -1,0 +1,30 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="ciclo-vida">
+  <template>
+    <p>
+      Esto es el DOM local
+    </p>
+  </template>
+  <script>
+    Polymer({
+      is: 'ciclo-vida',
+
+      created: function() {
+        console.log('método created');
+      },
+      ready: function() {
+        console.log('método ready');
+      },
+      attached: function() {
+        console.log('método attached');
+      },
+      detached: function() {
+        console.log('método detached');
+      },
+      attributeChanged: function() {
+        console.log('método attributeChanged');
+      }
+    });
+  </script>
+</dom-module>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>demo dw-feedback</title>
+  <link rel="import" href="ciclo-vida.html">
+</head>
+<body>
+  <H1>Demo ciclo-vida</H1>
+  <ciclo-vida></ciclo-vida>
+  <button id="cambiaAtributo">Cambia Atributo</button>
+  <button id="quitaElemento">Quita el elemento del DOM</button>
+  <button id="creaElemento">Crea un nuevo elemento en memoria Javascript</button>
+  <button id="creaInyectaElemento">Crea un nuevo elemento e injecta en el DOM</button>
+  <script>
+    document.getElementById('cambiaAtributo').addEventListener('click', function(){
+      document.querySelector('ciclo-vida').setAttribute("atributo", 'valor');
+    });
+    document.getElementById('quitaElemento').addEventListener('click', function(){
+      document.body.removeChild(document.querySelector('ciclo-vida'));
+    });
+    document.getElementById('creaElemento').addEventListener('click', function(){
+      document.createElement('ciclo-vida');
+    });
+    document.getElementById('creaInyectaElemento').addEventListener('click', function(){
+      var elem = document.createElement('ciclo-vida');
+      document.body.appendChild(elem);
+    });
+
+  </script>
+</body>
+</html>
