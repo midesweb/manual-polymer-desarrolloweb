@@ -1,0 +1,72 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="cuenta-atras-eventos.html">
+<dom-module id="agotadas-disparadas">
+  <template>
+    <style>
+      article{
+        width: 45%;
+        margin: 1%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        display: block;
+        float: left;
+      }
+      .marcador{
+        margin: 10px;
+        text-align: center;
+        font-family: sans-serif;
+      }
+      span{
+        padding: 10px;
+        background-color: #ddd;
+      }
+    </style>
+    <div class="marcador">
+      <span>Disparadas: {{contadores.disparadas}}</span>
+      <span>Agotadas: {{contadores.agotadas}}</span>
+    </div>
+    <div class="elementos">
+      <template is="dom-repeat" items="{{elementos}}">
+        <article><cuenta-atras-eventos on-cuenta-atras-agotada="agotada" on-cuenta-atras-disparada="disparada" cuenta="{{item}}"></cuenta-atras-eventos></article>
+      </template>
+    </div>
+  </template>
+  <script>
+   Polymer({
+     is: 'agotadas-disparadas',
+     properties: {
+       elementos: {
+         type: Array,
+         value: function() {
+           return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+         }
+       },
+       contadores: {
+         type: Object,
+         value: function() {
+           return {
+             agotadas: 0,
+             disparadas: 0
+           }
+         }
+       }
+     },
+     observers: ['cambioAgotadas(contadores.agotadas)', 'cambioDisparadas(contadores.disparadas)'],
+     agotada: function() {
+        //this.contadores.agotadas ++
+        console.log("agotada")
+        this.set("contadores.agotadas", this.contadores.agotadas + 1);
+
+     },
+     disparada: function() {
+       this.set("contadores.disparadas", this.contadores.disparadas + 1);
+     },
+     cambioAgotadas: function(valor){
+       console.log("cambio Agotadas, ahora vale: ", valor);
+     },
+     cambioDisparadas: function(){
+       console.log("cambio Disparadas");
+     }
+   });
+  </script>
+</dom-module>

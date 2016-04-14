@@ -1,0 +1,76 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<dom-module id="cuenta-atras">
+  <template>
+    <style>
+      div{
+        font-family: sans-serif;
+        font-size: 8em;
+        text-align: center;
+        font-weight: bold;
+      }
+      .contador{
+        color: #33c;
+      }
+      .boom {
+        color: #c33;
+      }
+      p{
+        text-align: center;
+      }
+      paper-button{
+        background-color: rgb(177, 23, 23);
+        color: #fff;
+        font-family: sans-serif;
+      }
+    </style>
+    <div class="contador" hidden="{{boom}}">{{cuenta}}</div>
+    <div class="boom" hidden="{{!boom}}">BOOOOOM!!!</div>
+    <p>
+      <paper-button on-tap="disparar" hidden="{{boom}}">Dispara</paper-button>
+    </p>
+  </template>
+  <script>
+   Polymer({
+     is: 'cuenta-atras',
+     properties: {
+       cuenta: {
+         type: Number,
+         value: 10,
+         observer: "vigilarFinCuenta"
+       },
+       task: Number,
+       boom: {
+         type: Boolean,
+         value: false
+       }
+     },
+
+     observers: ['cambiaTask(task)', 'cambiaTaskBoom(task, boom)'],
+
+     cambiaTask: function(task) {
+       console.log("cambiaTask", task);
+     },
+     cambiaTaskBoom(task, boom) {
+       console.log("cambiaTaskBoom", task, boom);
+     },
+     vigilarFinCuenta: function(valorActual, valorAnterior) {
+       console.log(valorActual, valorAnterior);
+       if(this.cuenta == 0){
+         this.cancelAsync(this.task);
+         this.boom = true;
+       }
+     },
+     decrementar: function() {
+       this.task = this.async(this.decrementar, 1000);
+       this.cuenta --;
+     },
+     ready: function() {
+       this.task = this.async(this.decrementar, 1000);
+     },
+     disparar: function() {
+       this.cuenta = 0;
+     }
+   });
+  </script>
+</dom-module>

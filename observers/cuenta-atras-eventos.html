@@ -1,0 +1,74 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<dom-module id="cuenta-atras-eventos">
+  <template>
+    <style>
+      div{
+        font-family: sans-serif;
+        font-size: 2em;
+        text-align: center;
+        font-weight: bold;
+      }
+      .contador{
+        color: #33c;
+      }
+      .boom {
+        color: #c33;
+      }
+      p{
+        text-align: center;
+      }
+      paper-button{
+        background-color: rgb(177, 23, 23);
+        color: #fff;
+        font-family: sans-serif;
+      }
+    </style>
+    <div class="contador" hidden="{{boom}}">{{cuenta}}</div>
+    <div class="boom" hidden="{{!boom}}">BOOOOOM!!!</div>
+    <p>
+      <paper-button on-tap="disparar" hidden="{{boom}}">Dispara</paper-button>
+    </p>
+  </template>
+  <script>
+   Polymer({
+     is: 'cuenta-atras-eventos',
+     properties: {
+       cuenta: {
+         type: Number,
+         value: 10,
+         observer: "vigilarFinCuenta"
+       },
+       task: Number,
+       boom: {
+         type: Boolean,
+         value: false
+       }
+     },
+
+     vigilarFinCuenta: function(valorActual, valorAnterior) {
+       //console.log(valorActual, valorAnterior);
+       if(valorActual == 0){
+         this.cancelAsync(this.task);
+         this.boom = true;
+
+         if(valorActual == (valorAnterior - 1)) {
+           this.fire("cuenta-atras-agotada");
+         } else {
+           this.fire("cuenta-atras-disparada");
+         }
+       }
+     },
+     decrementar: function() {
+       this.task = this.async(this.decrementar, 3000);
+       this.cuenta --;
+     },
+     ready: function() {
+       this.task = this.async(this.decrementar, 3000);
+     },
+     disparar: function() {
+       this.cuenta = 0;
+     }
+   });
+  </script>
+</dom-module>
