@@ -51,12 +51,10 @@
          }
        }
      },
-     observers: ['cambioAgotadas(contadores.agotadas)', 'cambioDisparadas(contadores.disparadas)'],
+     observers: ['cambioAgotadas(contadores.agotadas)', 'cambioDisparadas(contadores.disparadas)', 'cambioCualquiera(contadores.*)'],
      agotada: function() {
-        //this.contadores.agotadas ++
-        console.log("agotada")
+        //this.contadores.agotadas ++ //eso no notificaría a nadie
         this.set("contadores.agotadas", this.contadores.agotadas + 1);
-
      },
      disparada: function() {
        this.set("contadores.disparadas", this.contadores.disparadas + 1);
@@ -66,6 +64,9 @@
      },
      cambioDisparadas: function(){
        console.log("cambio Disparadas");
+     },
+     cambioCualquiera(cambios){
+       console.log("En cambio cualquiera", cambios.path, cambios.value);
      }
    });
   </script>
