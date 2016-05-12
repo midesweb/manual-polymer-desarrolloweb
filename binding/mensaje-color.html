@@ -1,0 +1,16 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="selector-colores.html">
+
+<dom-module id="mensaje-color">
+<template>
+  <p style="color: {{micolor}}"><content></content> <selector-colores color="{{micolor}}"></selector-colores></p>
+</template>
+  <script>
+Polymer({
+  is: "mensaje-color",
+  properties: {
+    micolor: String
+  }
+});
+  </script>
+</dom-module>

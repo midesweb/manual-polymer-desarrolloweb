@@ -1,0 +1,23 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="selector-colores">
+<template>
+  <select value="{{color::change}}">
+    <option value="#f00">Rojo</option>
+    <option value="#0f0">Verde</option>
+    <option value="#00f">Azul</option>
+  </select>
+</template>
+  <script>
+Polymer({
+  is: "selector-colores",
+  properties: {
+    color: {
+      type: String,
+      value: '#f00',
+      notify: true
+    }
+  }
+});
+  </script>
+</dom-module>

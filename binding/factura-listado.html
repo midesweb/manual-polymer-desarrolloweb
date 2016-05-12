@@ -1,0 +1,61 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="factura-item.html">
+
+<dom-module id="factura-listado">
+<template>
+  <h1>Facturas recibidas</h1>
+  <template is="dom-repeat" items="{{facturas}}">
+    {{item.precio}}
+    <factura-item data="{{item}}"></factura-item>
+  </template>
+  <p>
+    TOTAL: {{total}}
+  </p>
+</template>
+  <script>
+Polymer({
+  is: "factura-listado",
+  properties: {
+    facturas: {
+      type: Array,
+      value: function() {
+        return [
+          {
+            numero: "A33",
+            precio: 33
+          },
+          {
+            numero: "X34",
+            precio: 120
+          },
+          {
+            numero: "2016-35",
+            precio: 8
+          },
+          {
+            numero: "AB2016-9",
+            precio: 0.99
+          }
+        ]
+      }
+    },
+    total: {
+      type: Number,
+      computed: 'calculaTotal(facturas.*)'
+    }
+  },
+  // observers: [
+  //   'calculaTotal(facturas.*)'
+  // ],
+  calculaTotal: function(facturas) {
+    var valor = 0;
+    console.log('aki');
+    for (fact in this.facturas) {
+      valor += parseFloat(this.facturas[fact].precio);
+      console.log(this.facturas[fact].precio);
+    }
+    return valor;
+  }
+});
+  </script>
+</dom-module>

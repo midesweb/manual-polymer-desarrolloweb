@@ -1,0 +1,38 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+
+<dom-module id="factura-item">
+<template>
+  <style>
+    :host{
+      padding: 10px;
+      border: 1px solid #ddd;
+      margin-bottom: 10px;
+      display: block;
+      width: 300px;
+    }
+    span {
+      display: inline-block;
+      width: 200px;
+    }
+    input{
+      width: 40px;
+      font-size: 1.1em;
+    }
+  </style>
+  <span>Factura Num: {{data.numero}}</span>
+  <input type="text" value="{{data.precio::input}}">
+  <paper-input label="Input label" value="{{data.precio}}"></paper-input>
+</template>
+  <script>
+Polymer({
+  is: "factura-item",
+  properties: {
+    data: {
+      type: Object,
+      notify: true
+    }
+  }
+});
+  </script>
+</dom-module>

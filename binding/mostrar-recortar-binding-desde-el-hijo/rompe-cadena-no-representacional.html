@@ -1,0 +1,31 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="rompe-cadena-no-representacional">
+  <script>
+   Polymer({
+     is: 'rompe-cadena-no-representacional',
+     properties: {
+       len: {
+         type: Number,
+         value: 20
+       },
+       str: {
+         type: String,
+         value: ''
+       },
+       recorte: {
+         type: String,
+         computed: 'calculaRecorte(len, str)',
+         readOnly: true,
+         notify: true
+       }
+     },
+     calculaRecorte(len, str){
+       if (str.length <= len || len == 0) {
+         return str;
+       }
+       var recortada = str.substr(0, len);
+       return recortada.substr(0, Math.min(recortada.length, recortada.lastIndexOf(' '))) + '...';
+     }
+   });
+  </script>
+</dom-module>

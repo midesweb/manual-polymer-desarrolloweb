@@ -1,0 +1,27 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+
+<dom-module id="ejemplo-binding">
+<template>
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
+  <h1>{{titular}}</h1>
+  <paper-input label="Cambia el titular - Bindeo 2 direcciones" value="{{titular}}"></paper-input>
+  <paper-input label="Cambia el titular - Bindeo de 1 dirección" value="[[titular]]"></paper-input>
+</template>
+  <script>
+Polymer({
+  is: "ejemplo-binding",
+  properties: {
+    titular: {
+      type: String,
+      value: 'Esto es un titular',
+      readOnly: true
+    }
+  }
+});
+  </script>
+</dom-module>

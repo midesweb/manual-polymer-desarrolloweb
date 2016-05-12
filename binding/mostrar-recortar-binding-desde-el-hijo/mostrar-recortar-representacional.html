@@ -1,0 +1,46 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="rompe-cadena-no-representacional.html">
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+
+<dom-module id="mostrar-recortar-representacional">
+<template>
+  <rompe-cadena-no-representacional str="{{cadena}}" len="{{longitud}}" recorte="{{recorte}}"></rompe-cadena-no-representacional>
+  <p>
+    {{recorte}}
+    <iron-icon icon="{{icono}}" on-tap="mostrarRecortar"></iron-icon>
+  </p>
+</template>
+  <script>
+  Polymer({
+    is: "mostrar-recortar-representacional",
+    properties: {
+      cadena: String,
+      longitud: {
+        type: Number,
+        value: 20
+      },
+      longitudDefault: Number,
+      icono: {
+        type: String,
+        value: 'remove'
+      }
+    },
+    ready: function() {
+      if(this.longitud == 0){
+        this.icon = 'add';
+      }
+    },
+    mostrarRecortar: function() {
+      if(this.longitud > 0) {
+        this.longitudDefault = this.longitud;
+        this.longitud = 0;
+        this.icono = 'add';
+      } else {
+        this.longitud = this.longitudDefault;
+        this.icono = 'remove';
+      }
+    }
+  });
+  </script>
+</dom-module>
