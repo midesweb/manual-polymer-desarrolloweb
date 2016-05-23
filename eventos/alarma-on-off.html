@@ -1,0 +1,41 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+
+<dom-module id="alarma-on-off">
+  <template>
+    <p>{{estado}}</p>
+    <iron-icon icon="{{icono}}" id="elicono"></iron-icon>
+  </template>
+  <script>
+    Polymer({
+      is: "alarma-on-off",
+      properties: {
+        icono: {
+          type: String,
+          value: 'icons:alarm-on'
+        },
+        estado: {
+          type: String,
+          value: 'Activo'
+        }
+      },
+      listeners: {
+        'tap': 'tapComponente',
+        'elicono.tap': 'cambiaIcono'
+      },
+      tapComponente: function(e){
+        console.log('evento global:', e);
+      },
+      cambiaIcono: function(){
+        if(this.icono == 'icons:alarm-on'){
+          this.icono = 'icons:alarm-off';
+          this.estado = 'Inactivo';
+        }else{
+          this.icono = 'icons:alarm-on';
+          this.estado = 'Activo';
+        }
+      }
+    });
+  </script>
+</dom-module>
