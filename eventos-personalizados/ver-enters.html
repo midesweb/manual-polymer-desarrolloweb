@@ -1,0 +1,36 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="input-enter.html">
+
+<dom-module id="ver-enters">
+  <template>
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
+  <input-enter on-pulsado-enter="pulsadoEnter"></input-enter>
+  <template is="dom-repeat" items="{{instantes}}">
+    <p>
+      Enter detectado en el instante: {{item}}
+    </p>
+  </template>
+  </template>
+  <script>
+  Polymer({
+    is: "ver-enters",
+    properties: {
+      instantes: {
+        type: Array,
+        value: function() {
+          return []
+        }
+      }
+    },
+    pulsadoEnter: function(e, tiempo){
+      console.log('En el padre, detectado pulsado enter...', tiempo);
+      this.push('instantes', tiempo);
+      //e.stopPropagation() pararía la propagación del evento por la burbuja
+    }
+  });
+  </script>
+</dom-module>

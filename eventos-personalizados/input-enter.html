@@ -1,0 +1,25 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+
+<dom-module id="input-enter">
+  <template>
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
+  <paper-input label="Escribe y pulsa enter" on-keydown="checkForEnter"></paper-input>
+  </template>
+  <script>
+  Polymer({
+    is: "input-enter",
+    checkForEnter: function (e) {
+      if (e.keyCode === 13) {
+        //detectado enter
+        var instante = new Date().toString();
+        this.fire('pulsado-enter', instante);
+      }
+    }
+  });
+  </script>
+</dom-module>

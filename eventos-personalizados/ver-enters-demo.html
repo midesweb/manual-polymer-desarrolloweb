@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ver enters</title>
+  <link rel="import" href="ver-enters.html">
+</head>
+<body>
+  <template is="dom-bind" id="app">
+  <ver-enters on-pulsado-enter="pulsadoEscalando"></ver-enters>
+  </template>
+  <script>
+  var app = document.getElementById('app');
+  app.pulsadoEscalando = function(){
+    console.log('detectado en un elemento superior, gracias a la burbuja');
+  }
+  </script>
+</body>
+</html>
