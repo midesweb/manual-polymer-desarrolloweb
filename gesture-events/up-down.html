@@ -1,0 +1,42 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="up-down">
+  <template>
+    <style>
+      div {
+        font-family: sans-serif;
+        width: 300px;
+        height: 100px;
+        line-height: 100px;
+        text-align: center;
+        background-color: orange;
+        color: #fff;
+      }
+    </style>
+    <div id="updown">Click para eventos "gesture"</div>
+  </template>
+  <script>
+  Polymer({
+    is: 'up-down',
+    listeners: {
+      'updown.up': 'arriba',
+      'updown.down': 'abajo',
+      'updown.tap': 'toque',
+      'updown.track': 'arrastra',
+    },
+    arriba: function(evento){
+      console.log('Up:', evento.detail);
+    },
+    abajo: function(evento){
+      console.log('Down:', evento.detail);
+    },
+    toque: function(evento){
+      console.log('Tap:', evento.detail);
+    },
+    arrastra: function(evento){
+      console.log('Track:', evento.detail);
+      //console.log(evento.detail.hover()); devolvería el DIV de los eventos
+    }
+  });
+  </script>
+</dom-module>
